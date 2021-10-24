@@ -1,0 +1,27 @@
+/**
+*   Lists
+*/
+
+@mixin gaps-list {
+    @for $i from 1 through 5 {
+        .gap-#{$i} {
+            gap: #{$i}rem;
+        }
+        .gap-#{$i}h {
+            // half
+            gap: #{$i / ($i * 2)}rem;
+        }
+        .gap-#{$i}q {
+            // quarter
+            gap: #{$i / ($i * 4)}rem;
+        }
+    }
+}
+
+@mixin text-color-list($colors) {
+    @each $name, $color in $colors {
+        .text-#{$name} {
+            color: $color;
+        }
+    }
+}

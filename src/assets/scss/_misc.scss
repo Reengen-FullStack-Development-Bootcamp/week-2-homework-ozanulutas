@@ -1,0 +1,7 @@
+@include gaps-list;
+@include text-color-list($colors);
+
+.sticky {
+    position: sticky;
+    top: 0;
+}

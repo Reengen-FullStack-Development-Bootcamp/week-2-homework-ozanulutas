@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
-    <div id="nav">
+  <div id="app" class="app">
+    <b-container id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/hotel">Hotel</router-link> |
+      <router-link to="/hotel/2">Hotel</router-link> |
       <router-link to="/reservation">Reservation</router-link>
-    </div>
+    </b-container>
 
     <b-container>
       <router-view/>
