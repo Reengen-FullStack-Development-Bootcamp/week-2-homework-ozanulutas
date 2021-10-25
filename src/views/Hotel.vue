@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Hotel",
   watch: {
     $route(to, from) {
       // react to route changes...

@@ -6,49 +6,22 @@
         <h1>Reservation</h1>
         <b-card no-body class="shadow mr-2">
           <b-tabs pills card>
-            <b-tab v-for="i in 5" :key="i" :title="`${i}. Visitor`">
+            <!-- <Tab 
+              v-for="i in 5" 
+              :key="i"  
+              :title="`${i}. Visitor`"
+              @is-invalid="isInvalid(i, $event)"
+            /> -->
+            <b-tab
+              v-for="i in 5"
+              :key="i"
+              :title="`${i}. Visitor`"
+              :disabled="i > firstInvalidForm"
+            >
               <b-card-text>
-                <b-form>
-                  <b-form-group
-                    id="input-group-1"
-                    label="Email address:"
-                    label-for="input-1"
-                    description="We'll never share your email with anyone else."
-                  >
-                    <b-form-input
-                      id="input-1"
-                      v-model="$v.form.fname.$model"
-                      placeholder="F name"
-                      required
-                    ></b-form-input>
-                    <div class="error" v-if="!$v.form.fname.required">
-                      Field is required
-                    </div>
-                  </b-form-group>
-
-                  <b-form-group
-                    id="input-group-2"
-                    label="Your Name:"
-                    label-for="input-2"
-                  >
-                    <b-form-input
-                      id="input-2"
-                      v-model="$v.form.lname.$model"
-                      placeholder="L Name"
-                      required
-                    ></b-form-input>
-                    <div class="error" v-if="!$v.form.lname.required">
-                      Field is required
-                    </div>
-                  </b-form-group>
-
-                  <b-button type="submit" variant="primary" :disabled="$v.$invalid">Submit</b-button>
-                </b-form>
+                <ReservationForm @is-invalid="setInvalidForms(i, $event)" />
               </b-card-text>
             </b-tab>
-            <!-- <b-tab title="Tab 2">
-              <b-card-text>Tab contents 2</b-card-text>
-            </b-tab> -->
           </b-tabs>
         </b-card>
       </b-col>
@@ -66,25 +39,36 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import ReservationForm from "@/components/ReservationForm";
+// import Tab from "@/components/Tab";
 
 export default {
+  name: "Reservation",
+  components: {
+    ReservationForm,
+    // Tab
+  },
   data() {
     return {
-      form: {
-        fname: "",
-        lname: "",
-      },
+      invalidForms: [], // List of invalid forms
+      firstInvalidForm: 1,  // Firt of the invalid forms
     };
   },
-  validations: {
-    form: {
-      fname: {
-        required,
-      },
-      lname: {
-        required,
-      },
+  methods: {
+    // Creates a new set of invalid forms
+    setInvalidForms(i, $event) {
+      if ($event) {
+        this.invalidForms.push(i);
+      } else {
+        const index = this.invalidForms.indexOf(i);
+        this.invalidForms.splice(index, 1);
+      }
+
+      this.setFirstInvalidForm();
+    },
+    // Finds the firt invalid form
+    setFirstInvalidForm() {
+      this.firstInvalidForm = Math.min(...this.invalidForms)
     },
   },
 };
