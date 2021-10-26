@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row align-v="start">
+    <b-row>
       <!-- Reservation -->
       <b-col lg="8">
         <h1>Reservation</h1>
@@ -35,7 +35,7 @@
       <b-col lg="4">
         <h2>Hotel Name</h2>
         <b-card class="sticky shadow">
-          <b-img fluid src="https://picsum.photos/400/400/?image=20" />
+          <!-- <b-img fluid src="https://picsum.photos/400/400/?image=20" /> -->
 
           <b-button to="/hote/3" variant="primary">Go Back</b-button>
         </b-card>
