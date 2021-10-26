@@ -1,32 +1,40 @@
 <template>
-  <b-form>
+  <b-form :ref="refer">
     <b-form-group
-      id="input-group-1"
       label="Email address:"
-      label-for="input-1"
-      description="We'll never share your email with anyone else."
     >
       <b-form-input
-        id="input-1"
         v-model="$v.form.fname.$model"
+        :state="validateState('fname')"
+        name="fname"
         placeholder="F name"
-        required
       ></b-form-input>
-      <div class="error" v-if="!$v.form.fname.required && $v.form.fname.$dirty">Field is required</div>
+      <b-form-invalid-feedback>
+        This is a required field and must be at least 3 characters.
+      </b-form-invalid-feedback>
+      <!-- <div class="error" v-if="!$v.form.fname.required && $v.form.fname.$dirty">Field is required</div> -->
     </b-form-group>
 
-    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+    <b-form-group label-for="input-2">
       <b-form-input
-        id="input-2"
         v-model="$v.form.lname.$model"
+        :state="validateState('lname')"
+        name="lname"
         placeholder="L Name"
-        required
       ></b-form-input>
-      <div class="error" v-if="!$v.form.lname.required && $v.form.lname.$dirty">Field is required</div>
+      <b-form-invalid-feedback>
+        This is a required field and must be at least 3 characters.
+      </b-form-invalid-feedback>
+      <!-- <div class="error" v-if="!$v.form.lname.required && $v.form.lname.$dirty">Field is required</div> -->
     </b-form-group>
 
-    <b-button type="submit" variant="primary" :disabled="$v.$invalid">
-      Submit
+    <b-button 
+      v-if="showNextBtn"  
+      variant="primary" 
+      :disabled="$v.$invalid"
+      @click="$emit('next')"
+    >
+      Next
     </b-button>
   </b-form>
 </template>
@@ -36,6 +44,20 @@ import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "ReservationForm",
+  props: {
+    isActive: {
+      type: Boolean,
+      required: true
+    },
+    showNextBtn: {
+      type: Boolean,
+      required: true
+    },
+    refer: {
+      type: String,
+      required: true
+    },
+  },
   data() {
     return {
       form: {
@@ -57,18 +79,49 @@ export default {
   computed: {
     // Detects if form is invalid
     isInvalid() {
-      return this.$v.$invalid
+      return this.$v.$invalid;
     }
   },
   watch: {
     // Wathes the validity of the form and emits the changes.
     isInvalid: function(val) {
-      this.$emit("is-invalid", val)
+      this.$emit("is-invalid", val);
+    },
+    // Watches whether the form is active or not,
+    // if form is active, sets the focused input
+    isActive: function(isActive) {
+      if(isActive) {
+        // console.log("ref", this.$refs);
+        // console.log("ref", this.$refs[this.refer]);
+        // console.log("type", typeof this.$refs[this.refer]);
+        // console.log("v", this.$v);
+        if(!this.$v.$dirty) { // If form is never touched set first input to focused
+          this.$refs[this.refer][1].focus();
+        } else { // if form is touched set first invalid input to focused
+          for (let i = 0; i < this.$refs[this.refer].length; i++) {
+            if(!this.validateState(this.$refs[this.refer][i].name)) {
+              this.$refs[this.refer][i].focus();
+              break;
+            }
+          }
+        }
+      
+      }
     }
   },
   created() {
     // Emits the validity of the form.
-    this.$emit("is-invalid", this.$v.$invalid)
+    this.$emit("is-invalid", this.$v.$invalid);
+  },
+  methods: {
+    // Validates single form input
+    validateState(name) {
+      if(!this.$v.form[name]) { // if there are no vuealidate model, return
+        return true;
+      }
+      const { $dirty, $error } = this.$v.form[name];
+      return $dirty ? !$error : null; // if form is touched return error state
+    },
   }
 };
 </script>

@@ -5,21 +5,27 @@
       <b-col lg="8">
         <h1>Reservation</h1>
         <b-card no-body class="shadow mr-2">
-          <b-tabs pills card>
-            <!-- <Tab 
-              v-for="i in 5" 
-              :key="i"  
-              :title="`${i}. Visitor`"
-              @is-invalid="isInvalid(i, $event)"
-            /> -->
+          <b-tabs 
+            v-model="tabIndex"
+            pills 
+            card
+          >
             <b-tab
               v-for="i in 5"
               :key="i"
               :title="`${i}. Visitor`"
               :disabled="i > firstInvalidForm"
+              title-item-class="position-relative"
+              :title-link-class="`tab-link tab-link--${invalidForms.includes(i) ? 'error' : 'success'}`"
             >
               <b-card-text>
-                <ReservationForm @is-invalid="setInvalidForms(i, $event)" />
+                <ReservationForm 
+                  :refer="`reservation-form-${i}`"
+                  :show-next-btn="tabIndex !== 4"
+                  :is-active="tabIndex === i - 1"
+                  @is-invalid="setInvalidForms(i, $event)"
+                  @next="tabIndex++"
+                />
               </b-card-text>
             </b-tab>
           </b-tabs>
@@ -40,7 +46,6 @@
 
 <script>
 import ReservationForm from "@/components/ReservationForm";
-// import Tab from "@/components/Tab";
 
 export default {
   name: "Reservation",
@@ -52,27 +57,61 @@ export default {
     return {
       invalidForms: [], // List of invalid forms
       firstInvalidForm: 1,  // Firt of the invalid forms
+
+      tabIndex: 0, // Currently active tab
     };
   },
   methods: {
     // Creates a new set of invalid forms
     setInvalidForms(i, $event) {
-      if ($event) {
+      if ($event) { // if form is invalid
         this.invalidForms.push(i);
       } else {
         const index = this.invalidForms.indexOf(i);
         this.invalidForms.splice(index, 1);
+
+        this.setTabIndex();
       }
 
       this.setFirstInvalidForm();
     },
+
     // Finds the firt invalid form
     setFirstInvalidForm() {
-      this.firstInvalidForm = Math.min(...this.invalidForms)
+      if(this.invalidForms.length > 0) { // if there are invalid forms, get first
+        this.firstInvalidForm = Math.min(...this.invalidForms);
+      } else {  // if there are no invalid forms set first to forms count
+        this.firstInvalidForm = 5;
+      }
     },
+
+    // Sets the currently active tab
+    setTabIndex() {
+      setTimeout(() => {
+        this.tabIndex = this.firstInvalidForm - 1;
+      }, 100);
+    }
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+.tab-link {
+  &::after {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    margin-left: 0.3rem;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // transform: translate(50%, -50%);
+  }
+
+  &--error::after {
+    content: "\f057";
+  }
+  &--success::after {
+    content: "\f058";
+  }
+}
 </style>
