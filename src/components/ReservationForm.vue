@@ -15,7 +15,7 @@
       <!-- <div class="error" v-if="!$v.form.fname.required && $v.form.fname.$dirty">Field is required</div> -->
     </b-form-group>
 
-    <b-form-group label-for="input-2">
+    <b-form-group label="asd address:">
       <b-form-input
         v-model="$v.form.lname.$model"
         :state="validateState('lname')"

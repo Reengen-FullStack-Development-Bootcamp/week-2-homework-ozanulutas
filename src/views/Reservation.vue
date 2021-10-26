@@ -61,6 +61,18 @@ export default {
       tabIndex: 0, // Currently active tab
     };
   },
+  computed: {
+    invalidFormCount() { // Retruns the invalid forms count
+      return this.invalidForms.length;
+    }
+  },
+  watch: {
+    invalidFormCount: function(val) {
+      if(val < 1) { // if there are no invalid forms...
+        console.log("all forms completed");
+      }
+    }
+  },
   methods: {
     // Creates a new set of invalid forms
     setInvalidForms(i, $event) {
@@ -78,7 +90,7 @@ export default {
 
     // Finds the firt invalid form
     setFirstInvalidForm() {
-      if(this.invalidForms.length > 0) { // if there are invalid forms, get first
+      if(this.invalidFormCount > 0) { // if there are invalid forms, get first
         this.firstInvalidForm = Math.min(...this.invalidForms);
       } else {  // if there are no invalid forms set first to forms count
         this.firstInvalidForm = 5;
