@@ -28,6 +28,7 @@
             &#8226;
             <a href="">Show In Map</a>
           </div>
+          <!-- Desc -->
           <b-card-text>
             This is a wider card with supporting text as a natural lead-in to
             additional content. This content is a little bit longer. This is a
@@ -36,6 +37,24 @@
             with supporting text as a natural lead-in to additional content.
             This content is a little bit longer.
           </b-card-text>
+          <!-- Specs -->
+          <div class="d-flex flex-wrap">
+            <div
+              v-for="spec, i in specs"
+              :key="i"
+            >
+              <span 
+                v-html="specIcons[spec]"
+                class="mr-1"
+              ></span>
+              {{ spec }}
+              <span  class="mx-2">
+                &#8226;
+              </span>
+            </div>
+          </div>
+
+          <!-- Book Btn -->
           <div class="d-flex justify-content-end">
             <b-button to="/hotel/3" variant="primary">Book Now</b-button>
           </div>
@@ -69,7 +88,6 @@ export default {
         "spa",
         "beach",
         "gym",
-        "massage",
         "restaurant",
         "breakfast",
         "room service",
