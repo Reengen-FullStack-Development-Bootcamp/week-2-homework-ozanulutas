@@ -18,6 +18,14 @@
     }
 }
 
+@mixin flexes-list {
+    @for $i from 1 through 5 {
+        .flex-#{$i} {
+            flex: #{$i};
+        }
+    }
+}
+
 @mixin text-color-list($colors) {
     @each $name, $color in $colors {
         .text-#{$name} {

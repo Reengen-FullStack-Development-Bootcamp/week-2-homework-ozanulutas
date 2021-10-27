@@ -1,4 +1,6 @@
 @include gaps-list;
+@include flexes-list;
+
 @include text-color-list($colors);
 
 .sticky {

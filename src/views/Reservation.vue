@@ -36,7 +36,17 @@
         <h2>Hotel Name</h2>
         <b-card class="sticky shadow">
           <!-- <b-img fluid src="https://picsum.photos/400/400/?image=20" /> -->
-
+          <ul>
+            <li>
+              Start Date: {{ bookingData.startDate }}
+            </li>
+            <li>
+              End Date: {{ bookingData.endDate }}
+            </li>
+            <li>
+              Visitors: {{ bookingData.totalVisitorCount }}
+            </li>
+          </ul>
           <b-button to="/hotel/2" variant="primary">Go Back</b-button>
         </b-card>
       </b-col>
