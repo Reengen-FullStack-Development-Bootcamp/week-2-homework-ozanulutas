@@ -12,6 +12,7 @@ export default [
   {
     path: '/reservation',
     name: 'Reservation',
-    component: () => import('@/views/Reservation.vue')
+    component: () => import('@/views/Reservation.vue'),
+    props: true,
   },
 ]

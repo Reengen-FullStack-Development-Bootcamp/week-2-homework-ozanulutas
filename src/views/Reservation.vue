@@ -11,7 +11,7 @@
             card
           >
             <b-tab
-              v-for="i in 5"
+              v-for="i in formCount"
               :key="i"
               :title="`${i}. Visitor`"
               :disabled="i > firstInvalidForm"
@@ -21,7 +21,7 @@
               <b-card-text>
                 <ReservationForm 
                   :refer="`reservation-form-${i}`"
-                  :show-next-btn="tabIndex !== 4"
+                  :show-next-btn="tabIndex !== formCount - 1"
                   :is-active="tabIndex === i - 1"
                   @is-invalid="setInvalidForms(i, $event)"
                   @next="tabIndex++"
@@ -37,7 +37,7 @@
         <b-card class="sticky shadow">
           <!-- <b-img fluid src="https://picsum.photos/400/400/?image=20" /> -->
 
-          <b-button to="/hote/3" variant="primary">Go Back</b-button>
+          <b-button to="/hotel/2" variant="primary">Go Back</b-button>
         </b-card>
       </b-col>
     </b-row>
@@ -51,7 +51,13 @@ export default {
   name: "Reservation",
   components: {
     ReservationForm,
-    // Tab
+  },
+  props: {
+    bookingData: {
+      type: Object,
+      required: true,
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -64,6 +70,9 @@ export default {
   computed: {
     invalidFormCount() { // Retruns the invalid forms count
       return this.invalidForms.length;
+    },
+    formCount() { // Returns the number of total forms
+      return this.bookingData.totalVisitorCount;
     }
   },
   watch: {
@@ -71,6 +80,11 @@ export default {
       if(val < 1) { // if there are no invalid forms...
         console.log("all forms completed");
       }
+    }
+  },
+  created() {
+    if(!this.bookingData) {
+      this.$router.push("/");
     }
   },
   methods: {
@@ -93,7 +107,7 @@ export default {
       if(this.invalidFormCount > 0) { // if there are invalid forms, get first
         this.firstInvalidForm = Math.min(...this.invalidForms);
       } else {  // if there are no invalid forms set first to forms count
-        this.firstInvalidForm = 5;
+        this.firstInvalidForm = this.formCount;
       }
     },
 

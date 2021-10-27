@@ -109,8 +109,8 @@ export default {
       form: {
         adultCount: 0,
         infantCount: 0,
-        startDate: "",
-        endDate: "",
+        startDate: new Date(),
+        endDate: new Date(),
       }
     }
   },
@@ -148,6 +148,7 @@ export default {
         this.form.infantCount = $event;
       }
     },
+
     // Validates single form input
     validateState(name) {
       if(!this.$v.form[name]) { // if there are no vuealidate model, return
@@ -156,12 +157,21 @@ export default {
       const { $dirty, $error } = this.$v.form[name];
       return $dirty ? !$error : null; // if form is touched return error state
     },
+
     // if basic requirements for booking is satisfied, redirect to reservation page
     book() {
-      // console.log(this.$v);
       this.$v.$touch();
+
       if(!this.$v.$error) {
-        this.$router.push("/reservation");
+        this.$router.push({ 
+          name: "Reservation",
+          params: {
+            bookingData: {
+              ...this.form,
+              totalVisitorCount: this.totalVisitorCount
+            },
+          }
+        });
       }
     }
   }  
