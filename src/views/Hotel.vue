@@ -39,7 +39,7 @@
       </b-col>
       <b-col lg="4" class="sticky border rounded shadow py-3">
         <h2>Book Now</h2>
-        <b-form @submit.prevent="book()">
+        <b-form>
           <!-- Dates -->
           <b-form-group
             label="Start Date:"
@@ -49,7 +49,11 @@
               placeholder="Choose a start date" 
               locale="en"
               no-flip
+              :state="validateState('startDate')"
             ></b-form-datepicker>
+            <b-form-invalid-feedback>
+              Choose a start date to book
+            </b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
             label="End Date:"
@@ -59,20 +63,32 @@
               placeholder="Choose an end date" 
               locale="en"
               no-flip
+              :state="validateState('endDate')"
             ></b-form-datepicker>
+            <b-form-invalid-feedback>
+              Choose an end date to book
+            </b-form-invalid-feedback>
           </b-form-group>
 
           <!-- Visitor Counters -->
-          <section>
-            Adult
+          <b-form-group
+            label="Adult:"
+          >
             <VisitorCounter @change="setVisitorCount('adult', $event)"/>
-          </section>
-          <section>
-            Infant
+            <small v-if="!$v.form.adultCount.minValue && $v.form.adultCount.$dirty" class="text-danger">Choose the number of visitors</small>
+          </b-form-group>
+          <b-form-group
+            label="Infant:"
+          >
             <VisitorCounter @change="setVisitorCount('infant', $event)"/>
-          </section>
+          </b-form-group>
           <!-- <b-button to="/reservation" variant="primary">Book Now</b-button> -->
-          <b-button type="submit" variant="primary">Book Now</b-button>
+          <b-button 
+            variant="primary"
+            @click="book()"
+          >
+            Book Now
+          </b-button>
         </b-form>
       </b-col>
     </b-row>
@@ -91,10 +107,8 @@ export default {
   data() {
     return {
       form: {
-        visitorCount: { // bunları ayır
-          adult: 0,
-          infant: 0,
-        },
+        adultCount: 0,
+        infantCount: 0,
         startDate: "",
         endDate: "",
       }
@@ -102,10 +116,8 @@ export default {
   },
   validations: {
     form: {
-      visitorCount: {
-        adult: {
-          minValue: minValue(1),
-        },
+      adultCount: {
+        minValue: minValue(1),
       },
       startDate: {
         required
@@ -118,11 +130,8 @@ export default {
   computed: {
     // calcs the total visitor count
     totalVisitorCount() {
-      return this.form.visitorCount.adult + this.form.visitorCount.infant;
+      return this.form.adultCount + this.form.infantCount;
     },
-    v() {
-      return this.$v;
-    }
   },
   watch: {
     $route(to, from) {
@@ -133,25 +142,26 @@ export default {
   methods: {
     // Sets the visitors count according to type (adult or infant)
     setVisitorCount(type, $event) {
-      this.form.visitorCount[type] = $event;
-
       if(type === "adult") {
-        this.form.visitorCount[type].$touch();
+        this.form.adultCount = $event;
+      } else if(type === "infant") {
+        this.form.infantCount = $event;
       }
     },
-    // // Validates single form input
-    // validateState(name) {
-    //   if(!this.$v.form[name]) { // if there are no vuealidate model, return
-    //     return true;
-    //   }
-    //   const { $dirty, $error } = this.$v.form[name];
-    //   return $dirty ? !$error : null; // if form is touched return error state
-    // },
+    // Validates single form input
+    validateState(name) {
+      if(!this.$v.form[name]) { // if there are no vuealidate model, return
+        return true;
+      }
+      const { $dirty, $error } = this.$v.form[name];
+      return $dirty ? !$error : null; // if form is touched return error state
+    },
+    // if basic requirements for booking is satisfied, redirect to reservation page
     book() {
       // console.log(this.$v);
-      // this.$v.$touch();
-      if (this.$v.$error) {
-        console.log('Form is in error')
+      this.$v.$touch();
+      if(!this.$v.$error) {
+        this.$router.push("/reservation");
       }
     }
   }  
