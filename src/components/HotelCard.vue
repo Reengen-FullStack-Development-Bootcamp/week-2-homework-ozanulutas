@@ -5,12 +5,17 @@
   >
     <b-row no-gutters>
       <b-col md="4" lg="3">
+        <!-- Img -->
         <b-card-img
           src="https://picsum.photos/400/400/?image=20"
           class="hotel-card__img"
         ></b-card-img>
-        <b-button class="position-absolute">
-          <i class="fas fa-heart"></i>
+        <!-- Like -->
+        <b-button 
+          class="position-absolute left-0h top-0h z-1"
+          @click="isFavorite = !isFavorite"
+        >
+          <i :class="`${isFavorite ? 'fas' : 'far'} fa-heart`"></i>
         </b-button>
       </b-col>
       <b-col md="8" lg="9">
@@ -79,6 +84,7 @@ export default {
   },
   data() {
     return {
+      isFavorite: false,
       rating: {
         cleanliness: 4,
         staff: 4,
