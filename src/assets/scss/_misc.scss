@@ -7,6 +7,10 @@
 @include positions-list;
 @include z-indexes-list;
 
+@include dimensions-list;
+
+@include object-fit-list;
+
 
 .sticky {
     position: sticky;

@@ -3,37 +3,17 @@
     <b-row align-v="start">
       <b-col lg="8">
         <section class="border rounded shadow mr-2 p-3">
-          <h1>Hotel</h1>
-          <b-img src="https://picsum.photos/400/400/?image=20" />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            asperiores mollitia consequuntur ipsa totam quas libero dolorum?
-            Odit deserunt deleniti iure nemo laboriosam. Libero soluta placeat
-            nam minima voluptatibus deleniti?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            asperiores mollitia consequuntur ipsa totam quas libero dolorum?
-            Odit deserunt deleniti iure nemo laboriosam. Libero soluta placeat
-            nam minima voluptatibus deleniti?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            asperiores mollitia consequuntur ipsa totam quas libero dolorum?
-            Odit deserunt deleniti iure nemo laboriosam. Libero soluta placeat
-            nam minima voluptatibus deleniti?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            asperiores mollitia consequuntur ipsa totam quas libero dolorum?
-            Odit deserunt deleniti iure nemo laboriosam. Libero soluta placeat
-            nam minima voluptatibus deleniti?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            asperiores mollitia consequuntur ipsa totam quas libero dolorum?
-            Odit deserunt deleniti iure nemo laboriosam. Libero soluta placeat
-            nam minima voluptatibus deleniti?
+          <h1>{{ hotel.name }}</h1>
+          <b-img 
+            class="rounded max-h-20 fit-cover mb-3 shadow-sm"
+            fluid-grow
+            :src="require(`@/assets/img/hotels/${hotel.img}`)" 
+          />
+          <p
+            v-for="desc, i in this.hotel.desc"
+            :key="i"
+          >
+            {{ desc }}
           </p>
         </section>
       </b-col>
@@ -97,6 +77,7 @@
 
 <script>
 import VisitorCounter from "@/components/VisitorCounter.vue"
+import hotels from "@/assets/data/hotels"
 import { required, minValue } from "vuelidate/lib/validators";
 
 export default {
@@ -106,6 +87,8 @@ export default {
   },
   data() {
     return {
+      hotels,
+      hotel: {},
       form: {
         adultCount: 0,
         infantCount: 0,
@@ -138,6 +121,11 @@ export default {
       // react to route changes...
       console.log(to, from);
     },
+  },
+  created() {
+    const hotelId = this.$route.params.id; // get hotel id from route param
+    this.hotel = this.hotels.find(hotel => hotel.id == hotelId); // find hotel by id
+    this.hotel.desc = this.hotel.desc.split("\n"); // split hotel description by new lines for making paragraphs
   },
   methods: {
     // Sets the visitors count according to type (adult or infant)

@@ -4,6 +4,8 @@
 *   ## Layout
 *   ## Text
 *   ## Positioning
+*   ## Dimensions
+*   ## Image
 */
 
 
@@ -82,7 +84,6 @@
         }
     }
 }
-
 @mixin z-indexes-list {
     @for $i from -1 through 5 {
         @if $i < 0 {
@@ -93,6 +94,52 @@
             .z-#{$i} {
                 z-index: $i;
             }
+        }
+    }
+}
+
+
+/**
+* Dimensions
+*/
+@mixin dimensions-list {
+    $dimensions: (
+        "max-w": max-width,
+        "max-h": max-height,
+        "min-w": min-width,
+        "min-h": min-height,
+        "w": width,
+        "h": height,
+    );
+
+    @each $key, $property in $dimensions {
+        @for $i from 1 through 20 {
+            .#{$key}-#{$i} {
+                #{$property}: #{$i}rem;
+            }
+            .#{$key}-#{$i}h {
+                #{$property}: #{$i + 0.5}rem;
+            }
+        }
+    }
+}
+
+
+/**
+* Image
+*/
+@mixin object-fit-list {
+    $vals: (
+        "fill",
+        "contain",
+        "cover",
+        "none",
+        "scale-down"
+    );
+
+    @each $val in $vals {
+        .fit-#{$val} {
+            object-fit: #{$val};
         }
     }
 }
