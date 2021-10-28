@@ -2,6 +2,11 @@
 @include flexes-list;
 
 @include text-color-list($colors);
+@include font-sizes-list;
+
+@include positions-list;
+@include z-indexes-list;
+
 
 .sticky {
     position: sticky;

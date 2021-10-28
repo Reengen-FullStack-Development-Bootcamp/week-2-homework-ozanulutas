@@ -4,13 +4,16 @@
     class="hotel-card shadow-sm"
   >
     <b-row no-gutters>
-      <b-col md="4" lg="2">
+      <b-col md="4" lg="3">
         <b-card-img
           src="https://picsum.photos/400/400/?image=20"
           class="hotel-card__img"
         ></b-card-img>
+        <b-button class="position-absolute">
+          <i class="fas fa-heart"></i>
+        </b-button>
       </b-col>
-      <b-col md="8" lg="10">
+      <b-col md="8" lg="9">
         <b-card-body>
           <div class="d-flex justify-content-between">
             <!-- Name -->
@@ -22,40 +25,39 @@
             />
           </div>
           <!-- Location -->
-          <div class="d-flex align-items-center gap-1h mb-2">
-            <i class="fas fa-map-marker-alt"></i>
+          <div class="d-flex flex-wrap align-items-center mb-2">
+            <i class="fas fa-map-marker-alt mr-2"></i>
             <span class="text-muted">Location</span>
-            &#8226;
+            <span class="mx-3">&#8226;</span>
             <a href="">Show In Map</a>
+            <span class="mx-3">&#8226;</span>
+            <span>5.6 km from center</span>
+            <span class="mx-3">&#8226;</span>
+            <span>Subway Access</span>
           </div>
           <!-- Desc -->
           <b-card-text>
-            This is a wider card with supporting text as a natural lead-in to
-            additional content. This content is a little bit longer. This is a
-            wider card with supporting text as a natural lead-in to additional
-            content. This content is a little bit longer. This is a wider card
-            with supporting text as a natural lead-in to additional content.
-            This content is a little bit longer.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, iure!
           </b-card-text>
           <!-- Specs -->
-          <div class="d-flex flex-wrap">
+          <div class="d-flex flex-wrap gap-1 mb-3">
             <div
               v-for="spec, i in specs"
               :key="i"
             >
               <span 
                 v-html="specIcons[spec]"
-                class="mr-1"
+                class="mr-1 text-primary"
               ></span>
-              {{ spec }}
-              <span  class="mx-2">
-                &#8226;
+              <span class="text-muted">
+                {{ spec }}
               </span>
             </div>
           </div>
 
-          <!-- Book Btn -->
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="font-1h">Starts from 12$</span>
+            <!-- Book Btn -->
             <b-button to="/hotel/3" variant="primary">Book Now</b-button>
           </div>
         </b-card-body>

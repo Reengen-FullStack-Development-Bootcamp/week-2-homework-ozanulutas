@@ -1,5 +1,14 @@
 /**
-*   Lists
+*   # Lists
+*   -------
+*   ## Layout
+*   ## Text
+*   ## Positioning
+*/
+
+
+/**
+* Layout
 */
 
 @mixin gaps-list {
@@ -7,29 +16,83 @@
         .gap-#{$i} {
             gap: #{$i}rem;
         }
-        .gap-#{$i}h {
-            // half
-            gap: #{$i / ($i * 2)}rem;
+        .gap-#{$i}h { // half
+            gap: #{$i + 0.5}rem;
         }
-        .gap-#{$i}q {
-            // quarter
-            gap: #{$i / ($i * 4)}rem;
+        .gap-#{$i}q { // quarter
+            gap: #{$i + 0.25}rem;
+        }
+    }
+}
+@mixin flexes-list {
+    @for $i from 1 through 5 {
+        .flex-#{$i} {
+            flex: $i;
         }
     }
 }
 
-@mixin flexes-list {
-    @for $i from 1 through 5 {
-        .flex-#{$i} {
-            flex: #{$i};
-        }
-    }
-}
+
+/**
+* Text
+*/
 
 @mixin text-color-list($colors) {
     @each $name, $color in $colors {
         .text-#{$name} {
             color: $color;
+        }
+    }
+}
+@mixin font-sizes-list {
+    @for $i from 1 through 5 {
+        .font-#{$i} {
+            font-size: #{$i}rem;
+        }
+        .font-#{$i}h {
+            font-size: #{$i + 0.5}rem;
+        }
+    }
+}
+
+
+/**
+* Positioning
+*/
+
+@mixin positions-list {
+    $positions: (
+        "top",
+        "bottom",
+        "left",
+        "right"
+    );
+
+    @each $position in $positions {
+        @for $i from 0 through 5 {
+            .#{$position}-#{$i} {
+                #{$position}: #{$i}rem;
+            }
+            .#{$position}-#{$i}h {
+                #{$position}: #{$i + 0.5}rem;
+            }
+            .#{$position}-#{$i}q {
+                #{$position}: #{$i + 0.25}rem;
+            }
+        }
+    }
+}
+
+@mixin z-indexes-list {
+    @for $i from -1 through 5 {
+        @if $i < 0 {
+            .z-#{($i * -1)}n {
+                z-index: $i;
+            }
+        } @else {
+            .z-#{$i} {
+                z-index: $i;
+            }
         }
     }
 }
