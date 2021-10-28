@@ -1,3 +1,49 @@
-{
-  
-}
+[
+  {
+    "id": 1,
+    "name": "Hôtel l'Echiquier Opéra Paris",
+    "location": {
+      "country": "France",
+      "city": "Paris",
+      "addr": "38 rue de l' Echiquier, 10th arr., 75010",
+      "subway_access": true,
+      "distance_from_center": 5.6,
+      "coordinates": {
+        "lat": "48.87171698",
+        "long": "2.34947227"
+      }
+    },
+    "phone": "065465165",
+    "pricing": {
+      "beds": {
+        "king_size": 265,
+        "queen_size": 200,
+        "normal_size": 150
+      },
+      "included": {
+        "breakfast": 20,
+        "dinner": 30,
+        "all_in": 40
+      }
+    },
+    "rating": {
+      "cleanliness": 4,
+      "staff": 4,
+      "comfort": 4,
+      "service": 4
+    },
+    "facilities": [
+      "pool",
+      "spa",
+      "gym",
+      "restaurant",
+      "breakfast",
+      "room service",
+      "bar",
+      "wifi",
+      "accesible"
+    ],
+    "desc": "Hôtel l'Echiquier Opéra Paris offers luxury accommodations in the heart of Paris, 271 m from Bonne Nouvelle Metro Station. You can relax with a drink from the on-site bar. Hôtel l'Echiquier Opéra Paris - MGallery features spacious guest rooms equipped with a private bathroom, satellite TV and tea and coffee making facilities. Guests have access to free Wi-Fi. The hotel offers you the opportunity to enjoy the Paris cultural scene with its close proximity to some of the main tourist attractions, such as Opéra Garnier, Montmartre, Georges Pompidou Center, Eiffel Tower and Louver Museum. This is our guests' favorite part of Paris, according to independent reviews.",
+    "img": "59710428.webp"
+  }
+]

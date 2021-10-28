@@ -42,31 +42,31 @@
         <b-form>
           <!-- Dates -->
           <b-form-group
-            label="Start Date:"
+            label="Check-in Date:"
           >
             <b-form-datepicker 
-              v-model="form.startDate" 
-              placeholder="Choose a start date" 
+              v-model="form.checkInDate" 
+              placeholder="Choose a check-in date" 
               locale="en"
               no-flip
-              :state="validateState('startDate')"
+              :state="validateState('checkInDate')"
             ></b-form-datepicker>
             <b-form-invalid-feedback>
-              Choose a start date to book
+              Choose a check-in date to book
             </b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
             label="End Date:"
           >
             <b-form-datepicker 
-              v-model="form.endDate" 
-              placeholder="Choose an end date" 
+              v-model="form.checkOutDate" 
+              placeholder="Choose check-out date" 
               locale="en"
               no-flip
-              :state="validateState('endDate')"
+              :state="validateState('checkOutDate')"
             ></b-form-datepicker>
             <b-form-invalid-feedback>
-              Choose an end date to book
+              Choose check-out date to book
             </b-form-invalid-feedback>
           </b-form-group>
 
@@ -109,8 +109,8 @@ export default {
       form: {
         adultCount: 0,
         infantCount: 0,
-        startDate: new Date(),
-        endDate: new Date(),
+        checkInDate: new Date(),
+        checkOutDate: new Date(),
       }
     }
   },
@@ -119,10 +119,10 @@ export default {
       adultCount: {
         minValue: minValue(1),
       },
-      startDate: {
+      checkInDate: {
         required
       },
-      endDate: {
+      checkOutDate: {
         required
       },
     },
