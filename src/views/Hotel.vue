@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row align-v="start">
-      <b-col lg="8">
+      <b-col lg="8" class="mb-3 mb-lg-0">
         <b-card class="shadow">
           <h1 class="mb-3">{{ hotel.name }}</h1>
           <!-- carousel -->
@@ -73,7 +73,7 @@
       </b-col>
 
       <b-col lg="4" class="sticky p-lg-0">
-        <b-card  class="shadow">
+        <b-card class="shadow">
           <div class="d-flex justify-content-between align-items-end flex-wrap">
             <h2 class="mb-0">Book Now</h2>
             <span v-if="totalPrice > 0">
@@ -298,7 +298,12 @@ export default {
           params: {
             bookingData: {
               ...this.form,
-              totalVisitorCount: this.totalVisitorCount
+              totalVisitorCount: this.totalVisitorCount,
+              totalPrice: this.totalPrice,
+              hotel: {
+                img: this.hotel.img,
+                name: this.hotel.name
+              }
             },
           }
         });

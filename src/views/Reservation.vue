@@ -2,9 +2,8 @@
   <div>
     <b-row>
       <!-- Reservation -->
-      <b-col lg="8">
-        <h1>Reservation</h1>
-        <b-card no-body class="shadow mr-2">
+      <b-col lg="8" class="mb-3 mb-lg-0">
+        <b-card no-body class="shadow">
           <b-tabs 
             v-model="tabIndex"
             pills 
@@ -32,35 +31,44 @@
         </b-card>
       </b-col>
       <!-- About Hotel -->
-      <b-col lg="4">
-        <h2>Hotel Name</h2>
-        <b-card class="sticky shadow">
+      <b-col lg="4" class="sticky p-lg-0">
+        <b-card class="shadow">
+          <b-button v-b-modal.payment-modal>Launch demo modal</b-button>
+          <h2>{{ bookingData.hotel.name }}</h2>
           <!-- <b-img fluid src="https://picsum.photos/400/400/?image=20" /> -->
           <ul>
             <li>
-              Start Date: {{ bookingData.startDate }}
+              Start Date: {{ bookingData.checkInDate | parseDate }}
             </li>
             <li>
-              End Date: {{ bookingData.endDate }}
+              End Date: {{ bookingData.checkOutDate | parseDate }}
             </li>
             <li>
               Visitors: {{ bookingData.totalVisitorCount }}
             </li>
+            <li>
+              Total Price: {{ bookingData.totalPrice }}$
+            </li>
+           
           </ul>
           <b-button to="/hotel/2" variant="primary">Go Back</b-button>
         </b-card>
       </b-col>
     </b-row>
+
+    <PaymentModal />
   </div>
 </template>
 
 <script>
 import ReservationForm from "@/components/ReservationForm";
+import PaymentModal from "@/components/modals/PaymentModal.vue"
 
 export default {
   name: "Reservation",
   components: {
     ReservationForm,
+    PaymentModal
   },
   props: {
     bookingData: {

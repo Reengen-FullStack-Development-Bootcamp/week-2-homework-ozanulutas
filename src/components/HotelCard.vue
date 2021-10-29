@@ -114,7 +114,7 @@ export default {
   computed: {
     // calculates minimum bed price
     minPrice() {
-      return Math.min(...Object.values(this.hotel.pricing.beds));
+      return Math.min(...Object.values(this.hotel.pricing.bed));
     }
   }
 };

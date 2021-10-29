@@ -25,6 +25,22 @@ Vue.filter("capitalize", (val) => {
   return val.toString().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 })
 
+// Capitilazes the first chars in words
+Vue.filter("prefix", (val) => {
+  if(!val) {
+    return "";
+  }
+  return `Mr. ${val}`;
+})
+
+// Parse date into local string
+Vue.filter("parseDate", (val) => {
+  if(!val) {
+    return "";
+  }
+  return val.toLocaleString("en-US", { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' });
+})
+
 new Vue({
   router,
   render: h => h(App)
