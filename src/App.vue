@@ -1,10 +1,7 @@
 <template>
   <div id="app" class="app">
-    <b-container id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/hotel/2">Hotel</router-link> |
-      <router-link to="/reservation">Reservation</router-link>
-    </b-container>
+
+    <Navbar />
 
     <b-container>
       <router-view/>
@@ -13,23 +10,12 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue"
+
 export default {
-
-}
-</script>
-
-<style lang="scss">
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  name: "App",
+  components: {
+    Navbar
   }
 }
-</style>
+</script>

@@ -1,0 +1,6 @@
+{
+  "breakfast": "fas fa-bread-slice",
+  "dinner": "fas fa-drumstick-bite",
+  "all-in": "fas fa-utensils",
+  "none": "fas fa-times"
+}

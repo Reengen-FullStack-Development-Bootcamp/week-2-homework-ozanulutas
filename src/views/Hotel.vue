@@ -2,98 +2,227 @@
   <div>
     <b-row align-v="start">
       <b-col lg="8">
-        <section class="border rounded shadow mr-2 p-3">
-          <h1>{{ hotel.name }}</h1>
-          <b-img 
-            class="rounded max-h-20 fit-cover mb-3 shadow-sm"
-            fluid-grow
-            :src="require(`@/assets/img/hotels/${hotel.img}`)" 
-          />
-          <p
-            v-for="desc, i in this.hotel.desc"
-            :key="i"
-          >
-            {{ desc }}
-          </p>
-        </section>
-      </b-col>
-      <b-col lg="4" class="sticky border rounded shadow py-3">
-        <h2>Book Now</h2>
-        <b-form>
-          <!-- Dates -->
-          <b-form-group
-            label="Check-in Date:"
-          >
-            <b-form-datepicker 
-              v-model="form.checkInDate" 
-              placeholder="Choose a check-in date" 
-              locale="en"
-              no-flip
-              :state="validateState('checkInDate')"
-            ></b-form-datepicker>
-            <b-form-invalid-feedback>
-              Choose a check-in date to book
-            </b-form-invalid-feedback>
-          </b-form-group>
-          <b-form-group
-            label="End Date:"
-          >
-            <b-form-datepicker 
-              v-model="form.checkOutDate" 
-              placeholder="Choose check-out date" 
-              locale="en"
-              no-flip
-              :state="validateState('checkOutDate')"
-            ></b-form-datepicker>
-            <b-form-invalid-feedback>
-              Choose check-out date to book
-            </b-form-invalid-feedback>
-          </b-form-group>
+        <b-card class="shadow">
+          <h1 class="mb-3">{{ hotel.name }}</h1>
+          <!-- carousel -->
+          <HotelCarousel :showcase-img="hotel.img" />
 
-          <!-- Visitor Counters -->
-          <b-form-group
-            label="Adult:"
-          >
-            <VisitorCounter @change="setVisitorCount('adult', $event)"/>
-            <small v-if="!$v.form.adultCount.minValue && $v.form.adultCount.$dirty" class="text-danger">Choose the number of visitors</small>
-          </b-form-group>
-          <b-form-group
-            label="Infant:"
-          >
-            <VisitorCounter @change="setVisitorCount('infant', $event)"/>
-          </b-form-group>
-          <!-- <b-button to="/reservation" variant="primary">Book Now</b-button> -->
-          <b-button 
-            variant="primary"
-            @click="book()"
-          >
-            Book Now
-          </b-button>
-        </b-form>
+          <hr>
+
+          <!-- Location -->
+          <div class="d-flex flex-wrap align-items-center mb-2">
+            <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+            <!-- city -->
+            <span class="text-muted">{{ hotel.location.city }}</span>
+            <span class="mx-2">&#8226;</span>
+            <!-- show on map -->
+            <b-button 
+              class="p-0"
+              variant="link"
+              v-b-modal.map-modal
+            >
+              Show On Map
+            </b-button>
+            <span class="mx-2">&#8226;</span>
+            <!-- from center -->
+            <span>{{ hotel.location.distance_from_center }} km from center</span>
+            <!-- subway -->
+            <span v-if="hotel.location.subway_access">
+              <span class="mx-2">&#8226;</span>
+              <span>Subway Access</span>
+            </span>
+
+            <HotelCardRating
+              :id="hotel.id"
+              :rating="hotel.rating"
+              class="flex-1 text-right"
+            />
+          </div>
+
+          <hr>
+
+          <!-- desc -->
+          <div class="mt-4">
+            <p
+              v-for="desc, i in hotelDesc"
+              :key="i"
+            >
+              {{ desc }}
+            </p>
+          </div>
+
+          <hr>
+
+          <!-- facilities -->
+          <div class="d-flex flex-wrap gap-1 mb-3 flex-1">
+            <div
+              v-for="facility, i in hotel.facilities"
+              :key="i"
+            >
+              <i 
+                class="mr-1 text-primary"
+                :class="facilityIcons[facility]"
+              ></i>
+              <span class="text-muted">
+                {{ facility | capitalize }}
+              </span>
+            </div>
+          </div>
+
+        </b-card>
+      </b-col>
+
+      <b-col lg="4" class="sticky p-lg-0">
+        <b-card  class="shadow">
+          <h2>Book Now</h2>
+          <hr>
+          <b-form>
+            <!-- Dates -->
+            <b-form-group label="Check-in Date" label-class="font-weight-bold">
+              <b-form-datepicker 
+                v-model="form.checkInDate" 
+                placeholder="Choose a check-in date" 
+                locale="en"
+                no-flip
+                :state="validateState('checkInDate')"
+              ></b-form-datepicker>
+              <b-form-invalid-feedback>
+                Choose a check-in date to book
+              </b-form-invalid-feedback>
+            </b-form-group>
+            <b-form-group label="Check-out Date" label-class="font-weight-bold">
+              <b-form-datepicker 
+                v-model="form.checkOutDate" 
+                placeholder="Choose check-out date" 
+                locale="en"
+                no-flip
+                :state="validateState('checkOutDate')"
+              ></b-form-datepicker>
+              <b-form-invalid-feedback>
+                Choose check-out date to book
+              </b-form-invalid-feedback>
+            </b-form-group>
+
+            <!-- Visitor Counters -->
+            <b-form-group label="Visitors" label-class="font-weight-bold">
+              <div class="d-flex align-items-center">
+                Adult: <VisitorCounter @change="setVisitorCount('adult', $event)"/>
+              </div>
+              <small v-if="!$v.form.adultCount.minValue && $v.form.adultCount.$dirty" class="text-danger">Choose the number of adult visitors</small>
+              <div class="d-flex align-items-center">
+                Infant: <VisitorCounter @change="setVisitorCount('infant', $event)"/>
+              </div>
+            </b-form-group>
+            
+            <!-- Bed sizes -->
+            <b-form-group label="Bed Size" label-class="font-weight-bold">
+              <div class="d-flex gap-0h">
+                <div 
+                  v-for="bedSize, i in hotel.bed_sizes"
+                  :key="i"
+                  class="custom-radio"
+                >
+                  <input 
+                    v-model="$v.form.bedSize.$model"
+                    type="radio" 
+                    name="bed_size" 
+                    :id="`${bedSize}-bed`" 
+                    class="custom-radio__radio" 
+                    :value="bedSize"
+                  >
+                  <label class="custom-radio__label shadow-sm d-flex flex-column align-items-center gap-0h" :for="`${bedSize}-bed`">
+                    <i 
+                      class="custom-radio__icon font-1h"
+                      :class="bedSizeIcons[bedSize]"
+                    ></i>
+                    {{ bedSize | capitalize }} Size
+                  </label>
+                </div>
+              </div>
+              <small v-if="!$v.form.bedSize.required && $v.form.bedSize.$dirty" class="text-danger">Choose a bed size</small>
+            </b-form-group>
+
+            <!-- Included -->
+            <b-form-group label="Included" label-class="font-weight-bold">
+              <div class="d-flex gap-0h">
+                <div 
+                  v-for="included, i in hotel.included"
+                  :key="i"
+                  class="custom-radio"
+                >
+                  <input 
+                    v-model="form.included"
+                    type="radio" 
+                    name="included" 
+                    :id="`${included}`" 
+                    class="custom-radio__radio" 
+                    :value="included"
+                  >
+                  <label class="custom-radio__label shadow-sm d-flex flex-column align-items-center gap-0h" :for="`${included}`">
+                    <i 
+                      class="custom-radio__icon font-1h"
+                      :class="includedIcons[included]"
+                    ></i>
+                    {{ included | capitalize }}
+                  </label>
+                </div>
+              </div>
+            </b-form-group>
+
+            <!-- book -->
+            <b-button 
+              variant="primary"
+              @click="book()"
+            >
+              Book Now
+            </b-button>
+          </b-form>
+        </b-card>
       </b-col>
     </b-row>
+
+    <MapModal 
+      :coordinates="hotel.location.coordinates"
+    />
   </div>
 </template>
 
 <script>
 import VisitorCounter from "@/components/VisitorCounter.vue"
+import HotelCarousel from "@/components/HotelCarousel.vue"
+import MapModal from "@/components/modals/MapModal"
+import HotelCardRating from "@/components/HotelCardRating"
+
 import hotels from "@/assets/data/hotels"
+import bedSizeIcons from "@/assets/data/maps/bed-size-icons"
+import facilityIcons from "@/assets/data/maps/facility-icons"
+import includedIcons from "@/assets/data/maps/included-icons"
+
 import { required, minValue } from "vuelidate/lib/validators";
 
 export default {
   name: "Hotel",
   components: {
-    VisitorCounter
+    VisitorCounter,
+    HotelCarousel,
+    MapModal,
+    HotelCardRating
   },
   data() {
     return {
       hotels,
+      bedSizeIcons,
+      facilityIcons,
+      includedIcons,
       hotel: {},
-      form: {
+      hotelDesc: "",  // description about hotel
+      form: { // booking data
         adultCount: 0,
         infantCount: 0,
         checkInDate: new Date(),
         checkOutDate: new Date(),
+        bedSize: "",
+        included: "",
       }
     }
   },
@@ -108,6 +237,9 @@ export default {
       checkOutDate: {
         required
       },
+      bedSize: {
+        required
+      },
     },
   },
   computed: {
@@ -120,12 +252,14 @@ export default {
     $route(to, from) {
       // react to route changes...
       console.log(to, from);
+      // console.log(to.params.id);
+
     },
   },
   created() {
     const hotelId = this.$route.params.id; // get hotel id from route param
     this.hotel = this.hotels.find(hotel => hotel.id == hotelId); // find hotel by id
-    this.hotel.desc = this.hotel.desc.split("\n"); // split hotel description by new lines for making paragraphs
+    this.hotelDesc = this.hotel.desc.split("\n"); // split hotel description by new lines for making paragraphs
   },
   methods: {
     // Sets the visitors count according to type (adult or infant)
@@ -161,11 +295,7 @@ export default {
           }
         });
       }
-    }
+    },
   }  
 };
 </script>
-
-<style lang="scss">
-
-</style>

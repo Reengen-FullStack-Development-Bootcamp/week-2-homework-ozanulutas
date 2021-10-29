@@ -1,7 +1,8 @@
 <template>
   <section class="counter d-flex align-items-center">
     <b-button 
-      variant="primary"
+      variant="link"
+      size="sm"
       @click="descrease()"
     >
       <i class="fas fa-minus"></i>
@@ -10,7 +11,8 @@
       {{ count }}
     </div>
     <b-button 
-      variant="primary"
+      variant="link"
+      size="sm"
       @click="increase()"
     >
       <i class="fas fa-plus"></i>
@@ -48,11 +50,10 @@ export default {
 
 <style lang="scss" scoped>
 .counter {
-
   &__count {
     text-align: center;
-    font-size: 1.5rem;
-    width: 2em;
+    font-size: 1rem;
+    width: 1.5em;
   }
 }
 </style>

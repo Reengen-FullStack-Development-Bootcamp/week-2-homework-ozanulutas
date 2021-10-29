@@ -1,0 +1,25 @@
+.custom-radio {
+  $root: &;
+
+  &__radio {
+    display: none;
+    
+    &:checked + #{$root}__label {
+      border-color: #007bff;
+    }
+    &:not(:checked) + #{$root}__label {
+      // color: yellow;
+    }
+  }
+  
+  &__label {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  &__icon {
+  }
+}

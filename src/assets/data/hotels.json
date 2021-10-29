@@ -14,6 +14,17 @@
       }
     },
     "phone": "065465165",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
     "pricing": {
       "beds": {
         "king_size": 265,
@@ -23,7 +34,7 @@
       "included": {
         "breakfast": 20,
         "dinner": 30,
-        "all_in": 40
+        "all-in": 40
       }
     },
     "rating": {
@@ -44,7 +55,7 @@
       "no smoke"
     ],
     "desc": "Hôtel l'Echiquier Opéra Paris offers luxury accommodations in the heart of Paris, 271 m from Bonne Nouvelle Metro Station. You can relax with a drink from the on-site bar. \nHôtel l'Echiquier Opéra Paris - MGallery features spacious guest rooms equipped with a private bathroom, satellite TV and tea and coffee making facilities. Guests have access to free Wi-Fi. \nThe hotel offers you the opportunity to enjoy the Paris cultural scene with its close proximity to some of the main tourist attractions, such as Opéra Garnier, Montmartre, Georges Pompidou Center, Eiffel Tower and Louver Museum. \nThis is our guests' favorite part of Paris, according to independent reviews.",
-    "img": "59710428.webp"
+    "img": "59710428"
   },
   {
     "id": 2,
@@ -61,6 +72,17 @@
       }
     },
     "phone": "065465165",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
     "pricing": {
       "beds": {
         "king_size": 248,
@@ -70,7 +92,7 @@
       "included": {
         "breakfast": 22,
         "dinner": 28,
-        "all_in": 42
+        "all-in": 42
       }
     },
     "rating": {
@@ -89,6 +111,6 @@
       "no smoke"
     ],
     "desc": "Just 350 m from Saint-Georges Metro Station, this 4-star hotel is a 10-minute walk from the Sacré Coeur. It offers free WiFi access. \nAn LCD TV with satellite, international channels is offered in the rooms at Hotel Sacha. All rooms are contemporary in style and have air conditioning.\nHotel Sacha serves breakfast on the flowered patio or in the hotel’s breakfast room. Guests can also relax in the lounge or organize their day with the 24-hour reception’s ticket service.\nGuests staying at this hotel have access to the lounge area where they can drop off their shopping bags, borrow an umbrella or charge their mobile phone.\nOpéra Garnier is a 20-minute walk from the hotel and local transport links lead directly to Place de la Concorde. Shoppers may choose to visit the Galeries Lafayette department store, a 15-minute walk away.",
-    "img": "66378765.webp"
+    "img": "66378765"
   }
 ]

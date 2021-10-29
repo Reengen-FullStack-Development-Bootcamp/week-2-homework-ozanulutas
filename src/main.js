@@ -15,6 +15,16 @@ Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
+
+// Filter
+// Capitilazes the first chars in words
+Vue.filter("capitalize", (val) => {
+  if(!val) {
+    return "";
+  }
+  return val.toString().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+})
+
 new Vue({
   router,
   render: h => h(App)

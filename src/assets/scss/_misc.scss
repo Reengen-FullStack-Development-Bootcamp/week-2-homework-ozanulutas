@@ -10,9 +10,19 @@
 @include dimensions-list;
 
 @include object-fit-list;
+@include object-position-list;
 
 
 .sticky {
     position: sticky;
     top: 0;
+}
+
+.reset-btn {
+    @include reset-btn;
+}
+
+.grayscale {
+    filter: grayscale(1);
+    transition: 0.5s;
 }

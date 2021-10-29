@@ -4,7 +4,6 @@
       v-model="avgRating"
       variant="warning"
       :id="`rating-popover-target-${id}`"
-      class="mb-2"
       no-border
       inline
       readonly
@@ -17,7 +16,7 @@
     >
       <template #title>Ratings</template>
       <div class="d-flex align-items-center">
-        <b class="flex-1 text-muted"><i class="fas fa-user-tie"></i> Staff: </b>
+        <span class="flex-1 text-muted"><i class="text-primary fas fa-user-tie"></i> Staff: </span>
         <b-form-rating
           v-model="rating.staff"
           variant="warning"
@@ -26,7 +25,7 @@
         ></b-form-rating>
       </div>
       <div class="d-flex align-items-center">
-        <b class="flex-1 text-muted"><i class="fas fa-concierge-bell"></i> Service: </b>
+        <span class="flex-1 text-muted"><i class="text-primary fas fa-concierge-bell"></i> Service: </span>
         <b-form-rating
           v-model="rating.service"
           variant="warning"
@@ -35,7 +34,7 @@
         ></b-form-rating>
       </div>
       <div class="d-flex align-items-center">
-        <b class="flex-1 text-muted"><i class="fas fa-soap"></i> Cleanliness: </b>
+        <span class="flex-1 text-muted"><i class="text-primary fas fa-soap"></i> Cleanliness: </span>
         <b-form-rating
           v-model="rating.cleanliness"
           variant="warning"
@@ -44,7 +43,7 @@
         ></b-form-rating>
       </div>
       <div class="d-flex align-items-center">
-        <b class="flex-1 text-muted"><i class="fas fa-couch"></i> Comfort: </b>
+        <span class="flex-1 text-muted"><i class="text-primary fas fa-couch"></i> Comfort: </span>
         <b-form-rating
           v-model="rating.comfort"
           variant="warning"
@@ -77,4 +76,7 @@ export default {
 </script>
 
 <style>
+.b-rating {
+  background-color: transparent;
+}
 </style>
