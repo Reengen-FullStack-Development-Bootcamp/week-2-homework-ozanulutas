@@ -74,7 +74,12 @@
 
       <b-col lg="4" class="sticky p-lg-0">
         <b-card  class="shadow">
-          <h2>Book Now</h2>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <h2 class="mb-0">Book Now</h2>
+            <span v-if="totalPrice > 0">
+              Total: {{ totalPrice }} $
+            </span>
+          </div>
           <hr>
           <b-form>
             <!-- Dates -->
@@ -221,8 +226,8 @@ export default {
         infantCount: 0,
         checkInDate: new Date(),
         checkOutDate: new Date(),
-        bedSize: "",
-        included: "",
+        bedSize: null,
+        included: null,
       }
     }
   },
@@ -247,15 +252,18 @@ export default {
     totalVisitorCount() {
       return this.form.adultCount + this.form.infantCount;
     },
+    // calcs the total price.
+    totalPrice() {
+      return this.form.adultCount * ((this.hotel.pricing.bed[this.form.bedSize || "normal"]) + (this.hotel.pricing.included[this.form.included] || 0));
+    }
   },
-  watch: {
-    $route(to, from) {
-      // react to route changes...
-      console.log(to, from);
-      // console.log(to.params.id);
-
-    },
-  },
+  // watch: {
+  //   $route(to, from) {
+  //     // react to route changes...
+  //     console.log(to, from);
+  //     // console.log(to.params.id);
+  //   },
+  // },
   created() {
     const hotelId = this.$route.params.id; // get hotel id from route param
     this.hotel = this.hotels.find(hotel => hotel.id == hotelId); // find hotel by id

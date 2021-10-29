@@ -26,10 +26,10 @@
       "none"
     ],
     "pricing": {
-      "beds": {
-        "king_size": 265,
-        "queen_size": 200,
-        "normal_size": 150
+      "bed": {
+        "king": 265,
+        "queen": 200,
+        "normal": 150
       },
       "included": {
         "breakfast": 20,
@@ -84,10 +84,10 @@
       "none"
     ],
     "pricing": {
-      "beds": {
-        "king_size": 248,
-        "queen_size": 218,
-        "normal_size": 144
+      "bed": {
+        "king": 248,
+        "queen": 218,
+        "normal": 144
       },
       "included": {
         "breakfast": 22,
