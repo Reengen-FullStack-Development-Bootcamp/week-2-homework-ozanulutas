@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-row align-v="start">
+      <!-- About Hotel -->
       <b-col lg="8" class="mb-3 mb-lg-0">
         <b-card class="shadow">
           <h1 class="mb-3">{{ hotel.name }}</h1>
@@ -72,6 +73,7 @@
         </b-card>
       </b-col>
 
+      <!-- Book -->
       <b-col lg="4" class="sticky p-lg-0">
         <b-card class="shadow">
           <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -174,20 +176,22 @@
               </div>
             </b-form-group>
 
-            <!-- book -->
             <div class="d-flex justify-content-between">
+              <!-- book -->
               <b-button 
                 variant="primary"
                 @click="book()"
               >
                 Book Now
               </b-button>
-              <b-button
+              <!-- auto fill -->
+              <b-button 
+                class="font-1h"
                 variant="link"
                 v-b-tooltip.hover title="Auto Fill"
                 @click="formMagic()"
               >
-                <i class="fas fa-paint-roller"></i>
+                <i class="fas fa-hat-wizard"></i>
               </b-button>
             </div>
 
@@ -215,7 +219,6 @@ import includedIcons from "@/assets/data/maps/included-icons"
 
 import bookingValidation from "@/mixins/validation/booking-validation.js"
 import validateState from "@/mixins/validation/validate-state.js"
-
 
 export default {
   name: "Hotel",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row>
+    <b-row align-v="start">
       <!-- Reservation -->
       <b-col lg="8" class="mb-3 mb-lg-0">
         <b-card no-body class="shadow">
@@ -21,6 +21,7 @@
                 <ReservationForm 
                   :refer="`reservation-form-${i}`"
                   :show-next-btn="tabIndex !== formCount - 1"
+                  :disable-payment-btn="invalidFormCount > 0"
                   :is-active="tabIndex === i - 1"
                   @is-invalid="setInvalidForms(i, $event)"
                   @next="tabIndex++"
@@ -33,30 +34,43 @@
       <!-- About Hotel -->
       <b-col lg="4" class="sticky p-lg-0">
         <b-card class="shadow">
-          <b-button v-b-modal.payment-modal>Launch demo modal</b-button>
+          
           <h2>{{ bookingData.hotel.name }}</h2>
-          <!-- <b-img fluid src="https://picsum.photos/400/400/?image=20" /> -->
-          <ul>
+
+          <b-img 
+            class="rounded shadow-sm"
+            fluid 
+            :src="require(`@/assets/img/hotels/${bookingData.hotel.img}.jpg`)" 
+          />
+
+          <ul class="reset-list mt-2">
             <li>
-              Start Date: {{ bookingData.checkInDate | parseDate }}
+              <b>Check-In Date:</b> {{ bookingData.checkInDate | parseDate }}
             </li>
             <li>
-              End Date: {{ bookingData.checkOutDate | parseDate }}
+              <b>Check-Out Date:</b> {{ bookingData.checkOutDate | parseDate }}
             </li>
             <li>
-              Visitors: {{ bookingData.totalVisitorCount }}
+              <b>Visitors:</b> {{ `${bookingData.adultCount} Adults${bookingData.infantCount > 0 ? `, ${bookingData.infantCount} Infants` : ""}` }}
             </li>
             <li>
-              Total Price: {{ bookingData.totalPrice }}$
+              <b>Total Price:</b> {{ bookingData.totalPrice }}$
             </li>
-           
           </ul>
-          <b-button to="/hotel/2" variant="primary">Go Back</b-button>
+
+          <b-button 
+            variant="primary" 
+            :disabled="invalidFormCount > 0"
+            v-b-modal.payment-modal
+          >
+            Proceed To Payment
+            <i class="ml-1 fas fa-credit-card"></i>
+          </b-button>
         </b-card>
       </b-col>
     </b-row>
 
-    <PaymentModal />
+    <PaymentModal :visible="showPaymentModal" />
   </div>
 </template>
 
@@ -68,7 +82,7 @@ export default {
   name: "Reservation",
   components: {
     ReservationForm,
-    PaymentModal
+    PaymentModal,
   },
   props: {
     bookingData: {
@@ -81,6 +95,7 @@ export default {
     return {
       invalidForms: [], // List of invalid forms
       firstInvalidForm: 1,  // Firt of the invalid forms
+      showPaymentModal: false,
 
       tabIndex: 0, // Currently active tab
     };
@@ -96,7 +111,7 @@ export default {
   watch: {
     invalidFormCount: function(val) {
       if(val < 1) { // if there are no invalid forms...
-        console.log("all forms completed");
+        this.showPaymentModal = true;
       }
     }
   },

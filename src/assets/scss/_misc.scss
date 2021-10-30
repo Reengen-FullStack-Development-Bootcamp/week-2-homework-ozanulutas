@@ -22,6 +22,10 @@
     @include reset-btn;
 }
 
+.reset-list {
+    @include reset-list;
+}
+
 .grayscale {
     filter: grayscale(1);
     transition: 0.5s;

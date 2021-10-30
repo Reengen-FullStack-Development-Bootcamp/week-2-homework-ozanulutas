@@ -3,6 +3,7 @@
     id="payment-modal" 
     title="Payment"
     hide-footer
+    :visible="visible"
   >
     <component 
       :is="component"
@@ -15,6 +16,12 @@
 <script>
 export default {
   name: "PaymentModal",
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    }
+  },
   data() {
     return {
       isValid: false, // payment form's state
