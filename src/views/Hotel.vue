@@ -89,7 +89,7 @@
                 placeholder="Choose a check-in date" 
                 locale="en"
                 no-flip
-                :state="validateState('checkInDate')"
+                :state="validateState('form.checkInDate')"
               ></b-form-datepicker>
               <b-form-invalid-feedback>
                 Choose a check-in date
@@ -101,7 +101,7 @@
                 placeholder="Choose a check-out date" 
                 locale="en"
                 no-flip
-                :state="validateState('checkOutDate')"
+                :state="validateState('form.checkOutDate')"
               ></b-form-datepicker>
               <b-form-invalid-feedback>
                 Choose check-out date
@@ -213,7 +213,9 @@ import bedSizeIcons from "@/assets/data/maps/bed-size-icons"
 import facilityIcons from "@/assets/data/maps/facility-icons"
 import includedIcons from "@/assets/data/maps/included-icons"
 
-import { required, minValue } from "vuelidate/lib/validators";
+import bookingValidation from "@/mixins/validation/booking-validation.js"
+import validateState from "@/mixins/validation/validate-state.js"
+
 
 export default {
   name: "Hotel",
@@ -223,6 +225,7 @@ export default {
     MapModal,
     HotelCardRating
   },
+  mixins: [bookingValidation, validateState],
   data() {
     return {
       hotels,
@@ -240,22 +243,6 @@ export default {
         included: null,
       }
     }
-  },
-  validations: {
-    form: {
-      adultCount: {
-        minValue: minValue(1),
-      },
-      checkInDate: {
-        required
-      },
-      checkOutDate: {
-        required
-      },
-      bedSize: {
-        required
-      },
-    },
   },
   computed: {
     // calcs the total visitor count
@@ -287,15 +274,6 @@ export default {
       } else if(type === "infant") {
         this.form.infantCount = $event;
       }
-    },
-
-    // Validates single form input
-    validateState(name) {
-      if(!this.$v.form[name]) { // if there are no vuealidate model, return
-        return true;
-      }
-      const { $dirty, $error } = this.$v.form[name];
-      return $dirty ? !$error : null; // if form is touched return error state
     },
 
     // if basic requirements for booking is satisfied, redirect to reservation page with props
