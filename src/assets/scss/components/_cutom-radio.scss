@@ -6,6 +6,7 @@
     
     &:checked + #{$root}__label {
       border-color: #007bff;
+      color: #007bff;
     }
     // &:not(:checked) + #{$root}__label {
     //   // color: yellow;

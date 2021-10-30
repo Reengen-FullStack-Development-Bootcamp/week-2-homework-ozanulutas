@@ -23,6 +23,12 @@
 <script>
 export default {
   name: "VisitorCounter",
+  props: {
+    visitorCount: {
+      type: Number,
+      default: 0,
+    }
+  },
   data() {
     return {
       count: 0,
@@ -31,6 +37,9 @@ export default {
   watch: {
     count: function(val) {
       this.$emit("change", val);
+    },
+    visitorCount: function(val) {
+      this.count = val;
     }
   },
   methods: {

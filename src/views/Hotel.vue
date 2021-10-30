@@ -83,7 +83,7 @@
           <hr>
           <b-form>
             <!-- Dates -->
-            <b-form-group label="Check-in Date" label-class="font-weight-bold">
+            <b-form-group label="Check-In Date" label-class="font-weight-bold">
               <b-form-datepicker 
                 v-model="form.checkInDate" 
                 placeholder="Choose a check-in date" 
@@ -92,30 +92,30 @@
                 :state="validateState('checkInDate')"
               ></b-form-datepicker>
               <b-form-invalid-feedback>
-                Choose a check-in date to book
+                Choose a check-in date
               </b-form-invalid-feedback>
             </b-form-group>
-            <b-form-group label="Check-out Date" label-class="font-weight-bold">
+            <b-form-group label="Check-Out Date" label-class="font-weight-bold">
               <b-form-datepicker 
                 v-model="form.checkOutDate" 
-                placeholder="Choose check-out date" 
+                placeholder="Choose a check-out date" 
                 locale="en"
                 no-flip
                 :state="validateState('checkOutDate')"
               ></b-form-datepicker>
               <b-form-invalid-feedback>
-                Choose check-out date to book
+                Choose check-out date
               </b-form-invalid-feedback>
             </b-form-group>
 
             <!-- Visitor Counters -->
             <b-form-group label="Visitors" label-class="font-weight-bold">
               <div class="d-flex align-items-center">
-                Adult: <VisitorCounter @change="setVisitorCount('adult', $event)"/>
+                Adult: <VisitorCounter :visitor-count="form.adultCount" @change="setVisitorCount('adult', $event)"/>
               </div>
               <small v-if="!$v.form.adultCount.minValue && $v.form.adultCount.$dirty" class="text-danger">Choose the number of adult visitors</small>
               <div class="d-flex align-items-center">
-                Infant: <VisitorCounter @change="setVisitorCount('infant', $event)"/>
+                Infant: <VisitorCounter :visitor-count="form.infantCount" @change="setVisitorCount('infant', $event)"/>
               </div>
             </b-form-group>
             
@@ -175,12 +175,22 @@
             </b-form-group>
 
             <!-- book -->
-            <b-button 
-              variant="primary"
-              @click="book()"
-            >
-              Book Now
-            </b-button>
+            <div class="d-flex justify-content-between">
+              <b-button 
+                variant="primary"
+                @click="book()"
+              >
+                Book Now
+              </b-button>
+              <b-button
+                variant="link"
+                v-b-tooltip.hover title="Auto Fill"
+                @click="formMagic()"
+              >
+                <i class="fas fa-paint-roller"></i>
+              </b-button>
+            </div>
+
           </b-form>
         </b-card>
       </b-col>
@@ -224,8 +234,8 @@ export default {
       form: { // booking data
         adultCount: 0,
         infantCount: 0,
-        checkInDate: new Date(),
-        checkOutDate: new Date(),
+        checkInDate: null,
+        checkOutDate: null,
         bedSize: null,
         included: null,
       }
@@ -309,6 +319,18 @@ export default {
         });
       }
     },
+
+    // magically fills the form.
+    formMagic() {
+      const date = new Date();
+
+      this.form.adultCount = 3;
+      this.form.infantCount = 1;
+      this.form.checkInDate = new Date();
+      this.form.checkOutDate = new Date(date.setDate(date.getDate() + 3));
+      this.form.bedSize = "king";
+      this.form.included = "all-in";
+    }
   }  
 };
 </script>
