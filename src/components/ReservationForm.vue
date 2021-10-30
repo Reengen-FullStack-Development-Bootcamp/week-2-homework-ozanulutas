@@ -192,6 +192,7 @@ export default {
     this.$emit("is-invalid", this.$v.$invalid);
   },
   methods: {
+    // magically fills the form
     formMagic() {
       this.form.name = "Ozanus Ulutaşus";
       this.form.email = "purrfect@mail.com";

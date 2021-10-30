@@ -16,7 +16,8 @@
         ></b-card-img>
         <!-- Like -->
         <b-button 
-          class="position-absolute left-0h top-0h z-1 text-danger bg-dark"
+          class="like-btn text-danger"
+          variant="dark"
           @click="isFavorite = !isFavorite"
         >
           <i :class="`${isFavorite ? 'fas' : 'far'} fa-heart`"></i>

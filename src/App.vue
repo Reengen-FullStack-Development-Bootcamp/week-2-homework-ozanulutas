@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="app">
 
-    <Navbar />
+    <Navbar @change-selected-facility="(val) => selectedFacilies = val" />
 
     <b-container>
-      <router-view/>
+      <router-view v-bind="selectedFacilies"/>
     </b-container>
   </div>
 </template>
@@ -16,6 +16,11 @@ export default {
   name: "App",
   components: {
     Navbar
+  },
+  data() {
+    return {
+      selectedFacilies: []
+    }
   }
 }
 </script>

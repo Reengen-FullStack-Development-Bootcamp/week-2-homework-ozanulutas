@@ -5,7 +5,7 @@
       Your payment has been successfully made. 
     </p>
     <p>
-      <i class="fas fa-umbrella-beach"></i> Enjoy your vacation
+      <i class="fas fa-umbrella-beach text-primary"></i> Enjoy your vacation.
     </p>
   </div>
 </template>

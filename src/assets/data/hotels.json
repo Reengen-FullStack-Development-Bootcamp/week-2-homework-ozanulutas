@@ -112,5 +112,343 @@
     ],
     "desc": "Just 350 m from Saint-Georges Metro Station, this 4-star hotel is a 10-minute walk from the Sacré Coeur. It offers free WiFi access. \nAn LCD TV with satellite, international channels is offered in the rooms at Hotel Sacha. All rooms are contemporary in style and have air conditioning.\nHotel Sacha serves breakfast on the flowered patio or in the hotel’s breakfast room. Guests can also relax in the lounge or organize their day with the 24-hour reception’s ticket service.\nGuests staying at this hotel have access to the lounge area where they can drop off their shopping bags, borrow an umbrella or charge their mobile phone.\nOpéra Garnier is a 20-minute walk from the hotel and local transport links lead directly to Place de la Concorde. Shoppers may choose to visit the Galeries Lafayette department store, a 15-minute walk away.",
     "img": "66378765"
+  },
+  {
+    "id": 3,
+    "name": "Riad Azzar",
+    "location": {
+      "country": "Morocco",
+      "city": "Marrakesh",
+      "addr": "94 Derb Moulay Abdelkader Derb Dabachi, Medina, 40000",
+      "subway_access": false,
+      "distance_from_center": 1.5,
+      "coordinates": {
+        "lat": "31.62846151",
+        "long": "-7.98530370"
+      }
+    },
+    "phone": "+452292952",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 355,
+        "queen": 278,
+        "normal": 187
+      },
+      "included": {
+        "breakfast": 25,
+        "dinner": 32,
+        "all-in": 55
+      }
+    },
+    "rating": {
+      "cleanliness": 4,
+      "staff": 5,
+      "comfort": 5,
+      "service": 3
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "wifi",
+      "pool",
+      "accesible",
+      "smoke"
+    ],
+    "desc": "Riad Azzar features a restaurant, seasonal outdoor swimming pool, a bar and shared lounge in Marrakech. Featuring a garden, the riad is close to several noted attractions, around 200 m from Boucharouite Museum, 801 m from The Orientalist Museum of Marrakech and 0.7 mi from Le Jardin Secret. The accommodations offers a 24-hour front desk, airport transfers, room service and free WiFi.\nThe rooms at the riad come with a seating area. The units feature a private bathroom, slippers and bed linen.\nRiad Azzar offers a continental or à la carte breakfast.\nThe accommodations offers a terrace. The area is popular for cycling, and bike hire is available at Riad Azzar.\nPopular points of interest near the riad include Mouassine Museum, Bahia Palace and Djemaa El Fna. The nearest airport is Marrakech-Menara Airport, 3.1 mi from Riad Azzar.\nThis is our guests' favorite part of Marrakesh, according to independent reviews.",
+    "img": "117270188"
+  },
+  {
+    "id": 4,
+    "name": "Riad Zamzam",
+    "location": {
+      "country": "Morocco",
+      "city": "Marrakesh",
+      "addr": "107 rue Kaa El Machraa Marrakech 40000",
+      "subway_access": false,
+      "distance_from_center": 0.6,
+      "coordinates": {
+        "lat": "31.63335696",
+        "long": "-8.00009206"
+      }
+    },
+    "phone": "+454589259",
+    "bed_sizes": [
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 255,
+        "queen": 221,
+        "normal": 123
+      },
+      "included": {
+        "breakfast": 19,
+        "dinner": 25,
+        "all-in": 39
+      }
+    },
+    "rating": {
+      "cleanliness": 3,
+      "staff": 2,
+      "comfort": 4,
+      "service": 3
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "wifi",
+      "pool",
+      "accesible",
+      "smoke"
+    ],
+    "desc": "Riad Zamzam is a 20-minute drive from Marrakech Menara Airport and a 10-minute drive from the Train Station. It offers free Wi-Fi, a Moroccan-style décor and a rooftop terrace with sunbeds and mountain views.\nRooms and suites are air conditioned and include a private bathroom with a bath or shower. Some of them feature a seating area and a flat-screen TV with satellite channels.\nA continental breakfast can be enjoyed every morning on the patio or on the rooftop terrace. Moroccan meals can also be served on request.\nRiad Zamzam has a steam bath. Massage treatments, trips and cookery lessons can be arranged at on site at an extra cost. Guests can be provided with a map of the Medina and a talk about the local area.\nThis is our guests' favorite part of Marrakesh, according to independent reviews.",
+    "img": "223797857"
+  },
+  {
+    "id": 5,
+    "name": "Theatel Haneda",
+    "location": {
+      "country": "Japan",
+      "city": "Tokyo",
+      "addr": "144-0043 Tokyo-to, Ota-ku Haneda 5-23-7",
+      "subway_access": false,
+      "distance_from_center": 15,
+      "coordinates": {
+        "lat": "35.54794630",
+        "long": "139.74853870"
+      }
+    },
+    "phone": "+352929594",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 221,
+        "queen": 198,
+        "normal": 113
+      },
+      "included": {
+        "breakfast": 19,
+        "dinner": 25,
+        "all-in": 39
+      }
+    },
+    "rating": {
+      "cleanliness": 4,
+      "staff": 4,
+      "comfort": 3,
+      "service": 3
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "wifi",
+      "pool",
+      "spa",
+      "accesible",
+      "smoke"
+    ],
+    "desc": "In a prime location in the Ota Ward district of Tokyo, Theatel Haneda is located 2.7 mi from Tokyo International Airport Terminal No2 Observation Deck, 8.1 mi from Happoen Garden and 8.7 mi from Tokyo Gate Bridge. The 3-star hotel has air-conditioned rooms with a private bathroom and free WiFi. The property is nonsmoking and is set 9.9 mi from Tokyo City View Observation Deck.\nThe units in the hotel are equipped with a kettle. Guest rooms will provide guests with a fridge.\nSpeaking English and Japanese at the reception, staff are always at hand to help.\nTokyo Tower is 8.7 mi from Theatel Haneda, while Roppongi Hills is 9.9 mi away. The nearest airport is Tokyo Haneda International Airport, 1.1 mi from the accommodations.",
+    "img": "154928251"
+  },
+  {
+    "id": 6,
+    "name": "Azabu Ten Tokyo",
+    "location": {
+      "country": "Japan",
+      "city": "Tokyo",
+      "addr": "106-0044 Tokyo-to, Minato-ku Higashiazabu 2-26-8",
+      "subway_access": true,
+      "distance_from_center": 3.5,
+      "coordinates": {
+        "lat": "35.65627504",
+        "long": "139.74078611"
+      }
+    },
+    "phone": "+489249842",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 324,
+        "queen": 258,
+        "normal": 148
+      },
+      "included": {
+        "breakfast": 35,
+        "dinner": 56,
+        "all-in": 88
+      }
+    },
+    "rating": {
+      "cleanliness": 5,
+      "staff": 5,
+      "comfort": 4,
+      "service": 5
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "wifi",
+      "pool",
+      "spa",
+      "casino",
+      "no smoke",
+      "accesible"
+    ],
+    "desc": "Boasting a garden, Azabu Ten Tokyo is located in Tokyo in the Tokyo-to region, 801 m from Kimichan Statue and less than 0.6 mi from Tokyo Tower. Among the facilities of this property are a restaurant, a 24-hour front desk and room service, along with free WiFi throughout the property. The hotel has family rooms.\nAt the hotel rooms are fitted with air conditioning, a seating area, a flat-screen TV with cable channels, a safety deposit box and a private bathroom with a hot tub, slippers and a hairdryer. At Azabu Ten Tokyo the rooms come with bed linen and towels.\nAt the accommodations guests are welcome to take advantage of a hot tub.\nPopular points of interest near Azabu Ten Tokyo include Juban Inari Shrine, Daiho-ji Temple and Kenso-ji Temple. The nearest airport is Tokyo Haneda International Airport, 6.8 mi from the hotel.",
+    "img": "309241470"
+  },
+  {
+    "id": 7,
+    "name": "Villa Allamanda",
+    "location": {
+      "country": "Bahamas",
+      "city": "Governorʼs Harbour",
+      "addr": "Cigatoo Estates",
+      "subway_access": false,
+      "distance_from_center": 1.5,
+      "coordinates": {
+        "lat": "25.21636556",
+        "long": "-76.25780940"
+      }
+    },
+    "phone": "+959529529",
+    "bed_sizes": [
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 200,
+        "queen": 142,
+        "normal": 89
+      },
+      "included": {
+        "breakfast": 22,
+        "dinner": 39,
+        "all-in": 40
+      }
+    },
+    "rating": {
+      "cleanliness": 4,
+      "staff": 5,
+      "comfort": 4,
+      "service": 5
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "beach",
+      "spa",
+      "smoke"
+    ],
+    "desc": "Located just a 10- minute walk from Twin Coves Beach and a 4-minute drive from Governor's Harbor, Villa Allamanda is a hotel that offers 360 degree ocean views with free WiFi access.\nThe accommodations will provide you with a cable TV and air conditioning. Featuring a bath or shower, private bathroom also comes with complimentary toiletries.\nAt Villa Allamanda, Eleuthera you can enjoy the garden and ocean view terraces. Other facilities offered at the property include luggage storage, and ironing board. An array of activities can be enjoyed on site or in the surroundings, including hiking.\nBaggage Storage, Private Check-in/Check-out, Housekeeping-Daily if requested are available.",
+    "img": "51611003"
+  },
+  {
+    "id": 8,
+    "name": "The Sands Hotel",
+    "location": {
+      "country": "Bahamas",
+      "city": "Cockburn Town",
+      "addr": "",
+      "subway_access": false,
+      "distance_from_center": 2.7,
+      "coordinates": {
+        "lat": "24.05916859",
+        "long": "-74.53689873"
+      }
+    },
+    "phone": "+952892625",
+    "bed_sizes": [
+      "king",
+      "queen",
+      "normal"
+    ],
+    "included": [
+      "breakfast",
+      "dinner",
+      "all-in",
+      "none"
+    ],
+    "pricing": {
+      "bed": {
+        "king": 320,
+        "queen": 189,
+        "normal": 101
+      },
+      "included": {
+        "breakfast": 39,
+        "dinner": 56,
+        "all-in": 75
+      }
+    },
+    "rating": {
+      "cleanliness": 5,
+      "staff": 5,
+      "comfort": 4,
+      "service": 4
+    },
+    "facilities": [
+      "restaurant",
+      "breakfast",
+      "room service",
+      "beach",
+      "pool",
+      "spa",
+      "casino",
+      "wifi",
+      "smoke"
+    ],
+    "desc": "Facing the beachfront in Cockburn Town, The Sands Hotel features a garden and a private beach area. Featuring family rooms, this property also provides guests with a barbecue. The accommodations offers nightclub and a 24-hour front desk.\nThe units come with air conditioning, a flat-screen TV with cable channels, a microwave, a coffee machine, a shower, a hairdryer and a wardrobe. All rooms feature a private bathroom, free toiletries and bed linen.\nThe hotel offers a sun terrace. The area is popular for cycling, and car hire is available at The Sands Hotel.\nThe nearest airport is San Salvador, 0.6 mi from the accommodations, and the property offers a free airport shuttle service.",
+    "img": "176259174"
   }
 ]

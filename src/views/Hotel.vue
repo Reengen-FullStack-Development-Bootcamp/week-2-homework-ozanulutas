@@ -112,13 +112,25 @@
 
             <!-- Visitor Counters -->
             <b-form-group label="Visitors" label-class="font-weight-bold">
-              <div class="d-flex align-items-center">
-                Adult: <VisitorCounter :visitor-count="form.adultCount" @change="setVisitorCount('adult', $event)"/>
-              </div>
+              <b-dropdown 
+                :text="totalVisitorCount > 0 ? `Adults: ${form.adultCount}${form.infantCount > 0 ? `, Infants: ${form.infantCount}` : ''}` : 'Choose the number of visitors'"
+                block
+                :toggle-class="`custom-dropdown-toggle ${!$v.form.adultCount.minValue && $v.form.adultCount.$dirty ? 'custom-dropdown-toggle--error' : ''} d-flex justify-content-between align-items-center`"
+                menu-class="w-100"
+              >
+                <div class="d-flex flex-wrap justify-content-between align-items-center px-3">
+                  <div class="text-center">
+                    <b>Adult</b> 
+                    <VisitorCounter :visitor-count="form.adultCount" @change="setVisitorCount('adult', $event)"/>
+                  </div>
+                  <span class="text-muted">|</span>
+                  <div class="text-center">
+                    <b>Infant</b>
+                    <VisitorCounter :visitor-count="form.infantCount" @change="setVisitorCount('infant', $event)"/>
+                  </div>
+                </div>
+              </b-dropdown>
               <small v-if="!$v.form.adultCount.minValue && $v.form.adultCount.$dirty" class="text-danger">Choose the number of adult visitors</small>
-              <div class="d-flex align-items-center">
-                Infant: <VisitorCounter :visitor-count="form.infantCount" @change="setVisitorCount('infant', $event)"/>
-              </div>
             </b-form-group>
             
             <!-- Bed sizes -->
@@ -257,13 +269,6 @@ export default {
       return this.form.adultCount * ((this.hotel.pricing.bed[this.form.bedSize || "normal"]) + (this.hotel.pricing.included[this.form.included] || 0));
     }
   },
-  // watch: {
-  //   $route(to, from) {
-  //     // react to route changes...
-  //     console.log(to, from);
-  //     // console.log(to.params.id);
-  //   },
-  // },
   created() {
     const hotelId = this.$route.params.id; // get hotel id from route param
     this.hotel = this.hotels.find(hotel => hotel.id == hotelId); // find hotel by id
@@ -305,7 +310,7 @@ export default {
     formMagic() {
       const date = new Date();
 
-      this.form.adultCount = 3;
+      this.form.adultCount = 2;
       this.form.infantCount = 1;
       this.form.checkInDate = new Date();
       this.form.checkOutDate = new Date(date.setDate(date.getDate() + 3));
@@ -315,3 +320,22 @@ export default {
   }  
 };
 </script>
+
+<style lang="scss">
+.custom-dropdown-toggle {
+  border: 1px solid #ced4da;
+  background-color: white !important;
+  color: #6c757d !important;
+
+  &:hover {
+    border-color: #ced4da;
+  }
+
+  &--error {
+    border-color: #dc3545;
+     &:hover {
+      border-color: #dc3545;
+    }
+  }
+}
+</style>

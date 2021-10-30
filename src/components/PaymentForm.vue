@@ -61,16 +61,29 @@
       </b-col>
     </b-row>
 
-    <b-button type="submit" variant="primary">Submit</b-button>
+    <div class="d-flex justify-content-between">
+      <b-button type="submit" variant="primary">Submit</b-button>
+
+      <!-- autofill btn -->
+      <b-button 
+        class="font-1h"
+        variant="link"
+        v-b-tooltip.hover title="Auto Fill"
+        @click="formMagic()"
+      >
+        <i class="fas fa-hat-wizard"></i>
+      </b-button>
+    </div>
   </b-form>
 </template>
 
 <script>
-import { required, maxLength, minLength } from "vuelidate/lib/validators";
-import { getPropByPath } from "@/helpers/object-helpers.js";
+import paymentValidation from "@/mixins/validation/payment-validation.js"
+import validateState from "@/mixins/validation/validate-state.js"
 
 export default {
   name: "PaymentModal",
+  mixins: [paymentValidation, validateState],
   data() {
     return {
       isValid: false,
@@ -89,31 +102,6 @@ export default {
       }
     }
   },
-  validations: {
-    form: {
-      name: {
-        required,
-      },
-      cardNumber: {
-        required,
-        maxLength: maxLength(16),
-        minLength: minLength(16)
-      },
-      ccv: {
-        required,
-        maxLength: maxLength(3),
-        minLength: minLength(3)
-      },
-      validThru: {
-        month: {
-          required,
-        },
-        year: {
-          required,
-        },
-      },
-    },
-  },
   created() {
     this.setValidThruYears();
     this.setValidThruMonths();
@@ -129,25 +117,12 @@ export default {
   methods: {
     // if form is valid submits it
     submit() {
-      this.isValid = true;
-
       this.$v.$touch();
 
       if(!this.$v.$error) {
-        console.log("succ");
         this.isValid = true;
       }
     },
-
-    // Validates single form input
-    validateState(name) {
-      if(!getPropByPath(this.$v, name)) { // if there are no vuealidate model, return
-        return true;
-      }
-      const { $dirty, $error } = getPropByPath(this.$v, name);
-      return $dirty ? !$error : null; // if form is touched return error state
-    },
-
     // sets the valid thru years
     setValidThruYears() {
       const thisYear = new Date().getFullYear();
@@ -160,6 +135,17 @@ export default {
       this.validThru.months = [
         ...Array.from(Array(12).keys()).map((month) => month + 1)
       ];
+    },
+
+    // magically fills the form
+    formMagic() {
+      this.form.name = "Ozanus Ulutaşus";
+      this.form.cardNumber = "1234567891234567";
+      this.form.validThru.month = "8";
+      this.form.validThru.year = "2025";
+      this.form.ccv = "222";
+
+      this.$v.$touch();
     }
   }
 }

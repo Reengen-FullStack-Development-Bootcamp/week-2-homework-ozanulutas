@@ -25,8 +25,9 @@ export default {
   data() {
     return {
       isValid: false, // payment form's state
+      isPaymentSuccessful: false,
+      name: "",  // name of the visitor who made the payment
       component: () => import("@/components/PaymentForm"), // mount payment form as default
-      name: ""  // name of the visitor who made the payment
     }
   },
   watch: {
@@ -37,9 +38,20 @@ export default {
 
         setTimeout(() => {
           this.component = () => import("@/components/PaymentCompleted");  // after 2 secs mount payment completed component
+          this.isPaymentSuccessful = true;
         }, 2000);
       } 
     }
+  },
+  created() {
+    // if payment is succefully completed redirect to homepage when modal close
+    this.$root.$on('bv::modal::hide', () => {
+      if(this.isPaymentSuccessful) {
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 500);
+      }
+    })
   },
   methods: {
     // if form is valid change the state of valideness and customer name
