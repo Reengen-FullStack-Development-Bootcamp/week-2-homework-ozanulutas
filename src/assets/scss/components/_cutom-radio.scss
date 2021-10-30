@@ -7,19 +7,24 @@
     &:checked + #{$root}__label {
       border-color: #007bff;
     }
-    &:not(:checked) + #{$root}__label {
-      // color: yellow;
-    }
+    // &:not(:checked) + #{$root}__label {
+    //   // color: yellow;
+    // }
   }
   
   &__label {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
-    padding: 1rem;
+    padding: 1rem .7rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
+    box-shadow: 0 0.125rem 0.25rem #0000001a;
+    
+    &:hover {
+      transform: translateY(-0.2rem);
+      box-shadow: 0 0.325rem 0.45rem #00000010;
+    }
+
   }
 
-  &__icon {
-  }
 }

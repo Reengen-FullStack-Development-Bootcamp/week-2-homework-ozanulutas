@@ -121,7 +121,7 @@
             
             <!-- Bed sizes -->
             <b-form-group label="Bed Size" label-class="font-weight-bold">
-              <div class="d-flex gap-0h">
+              <div class="d-flex flex-wrap gap-0h">
                 <div 
                   v-for="bedSize, i in hotel.bed_sizes"
                   :key="i"
@@ -135,7 +135,7 @@
                     class="custom-radio__radio" 
                     :value="bedSize"
                   >
-                  <label class="custom-radio__label shadow-sm d-flex flex-column align-items-center gap-0h" :for="`${bedSize}-bed`">
+                  <label class="custom-radio__label d-flex flex-column align-items-center gap-0h" :for="`${bedSize}-bed`">
                     <i 
                       class="custom-radio__icon font-1h"
                       :class="bedSizeIcons[bedSize]"
@@ -149,7 +149,7 @@
 
             <!-- Included -->
             <b-form-group label="Included" label-class="font-weight-bold">
-              <div class="d-flex gap-0h">
+              <div class="d-flex flex-wrap gap-0h">
                 <div 
                   v-for="included, i in hotel.included"
                   :key="i"
@@ -163,7 +163,7 @@
                     class="custom-radio__radio" 
                     :value="included"
                   >
-                  <label class="custom-radio__label shadow-sm d-flex flex-column align-items-center gap-0h" :for="`${included}`">
+                  <label class="custom-radio__label d-flex flex-column align-items-center gap-0h" :for="`${included}`">
                     <i 
                       class="custom-radio__icon font-1h"
                       :class="includedIcons[included]"
@@ -288,7 +288,7 @@ export default {
       return $dirty ? !$error : null; // if form is touched return error state
     },
 
-    // if basic requirements for booking is satisfied, redirect to reservation page
+    // if basic requirements for booking is satisfied, redirect to reservation page with props
     book() {
       this.$v.$touch();
 
