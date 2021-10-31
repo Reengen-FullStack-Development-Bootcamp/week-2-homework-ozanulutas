@@ -3,7 +3,7 @@
 
 # Hotel Reservation
 
-[Project Link](https://hotel-reservation-ozanulutas.vercel.app/)
+:bomb::boom: [Project Link](https://hotel-reservation-ozanulutas.vercel.app/)
 
 Simple hotel reservation app created with Vue.js and BootstrapVue.
 You can select a hotel from a list and make a reservation by choosing booking information and filling forms. Also you can make a search and filter hotels by its facilities.
