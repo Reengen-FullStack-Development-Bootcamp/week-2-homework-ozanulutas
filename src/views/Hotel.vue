@@ -11,34 +11,42 @@
           <hr>
 
           <!-- Location -->
-          <div class="d-flex flex-wrap align-items-center mb-2">
-            <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
-            <!-- city -->
-            <span class="text-muted">{{ hotel.location.city }}</span>
-            <span class="mx-2">&#8226;</span>
-            <!-- show on map -->
-            <b-button 
-              class="p-0"
-              variant="link"
-              v-b-modal.map-modal
-            >
-              Show On Map
-            </b-button>
-            <span class="mx-2">&#8226;</span>
-            <!-- from center -->
-            <span>{{ hotel.location.distance_from_center }} km from center</span>
-            <!-- subway -->
-            <span v-if="hotel.location.subway_access">
+          <section>
+            <div class="d-flex flex-wrap align-items-center mb-2">
+              <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+              <!-- city -->
+              <span class="text-muted">{{ hotel.location.city }}</span>
               <span class="mx-2">&#8226;</span>
-              <span>Subway Access</span>
-            </span>
+              <!-- show on map -->
+              <b-button 
+                class="p-0"
+                variant="link"
+                v-b-modal.map-modal
+              >
+                Show On Map
+              </b-button>
+              <span class="mx-2">&#8226;</span>
+              <!-- from center -->
+              <span>{{ hotel.location.distance_from_center }} km from center</span>
+              <!-- subway -->
+              <span v-if="hotel.location.subway_access">
+                <span class="mx-2">&#8226;</span>
+                <span>Subway Access</span>
+              </span>
 
-            <HotelCardRating
-              :id="hotel.id"
-              :rating="hotel.rating"
-              class="flex-1 text-right"
-            />
-          </div>
+              <HotelCardRating
+                :id="hotel.id"
+                :rating="hotel.rating"
+                class="flex-1 text-right"
+              />
+            </div>
+            <div>
+              <i class="fas fa-hotel mr-2 text-primary"></i> 
+              {{ hotel.location.addr }},
+              {{ hotel.location.city }},
+              {{ hotel.location.country }}
+            </div>
+          </section>
 
           <hr>
 
