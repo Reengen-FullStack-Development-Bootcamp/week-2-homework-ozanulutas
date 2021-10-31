@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="app">
 
-    <Navbar @change-selected-facility="(val) => selectedFacilies = val" />
+    <Navbar/>
 
     <b-container>
-      <router-view v-bind="selectedFacilies"/>
+      <router-view/>
     </b-container>
   </div>
 </template>
@@ -19,7 +19,6 @@ export default {
   },
   data() {
     return {
-      selectedFacilies: []
     }
   }
 }
